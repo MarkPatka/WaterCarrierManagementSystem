@@ -1,7 +1,10 @@
-﻿
+﻿namespace WaterCarrierManagementSystem.Domain.Common.Abstract;
+
 public abstract class ValueObject : IEquatable<ValueObject>
 {
     public abstract IEnumerable<object> GetEqualityComponents();
+    
+    protected ValueObject() { }
 
     public override bool Equals(object? obj)
     {
@@ -10,17 +13,17 @@ public abstract class ValueObject : IEquatable<ValueObject>
             return false;
         }
         var valueObject = (ValueObject)obj;
-        
+
         return GetEqualityComponents()
             .SequenceEqual(valueObject.GetEqualityComponents());
     }
 
     public static bool operator ==(ValueObject left, ValueObject right) =>
         Equals(left, right);
-    
+
     public static bool operator !=(ValueObject left, ValueObject right) =>
         !Equals(left, right);
-    
+
     public bool Equals(ValueObject? other) =>
         Equals((object?)other);
 

@@ -4,7 +4,7 @@ public abstract class Entity<Tid> :
     IEquatable<Entity<Tid>>
     where Tid : notnull
 {
-    public Tid Id { get; protected set; }
+    public virtual Tid Id { get; protected set; }
 
 #pragma warning disable CS8618 
     protected Entity() { }

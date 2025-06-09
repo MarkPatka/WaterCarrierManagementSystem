@@ -1,0 +1,32 @@
+﻿using WaterCarrierManagementSystem.Domain.Common.Abstract;
+using WaterCarrierManagementSystem.Domain.ContractorAggregate.Entities;
+using WaterCarrierManagementSystem.Domain.ContractorAggregate.ValueObjects;
+using WaterCarrierManagementSystem.Domain.EmplyeeAggregate;
+
+namespace WaterCarrierManagementSystem.Domain.ContractorAggregate;
+
+public class Contractor : AggregateRoot<ContractorId>
+{
+    public virtual string Name      { get; }
+    public virtual INN Inn          { get; }
+    public virtual Employee Curator { get; }
+
+    private Contractor() { } 
+
+    private Contractor(ContractorId id, 
+        string name, INN inn, Employee curator) 
+        : base(id)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Name cannot be empty", nameof(name));
+
+        Name = name.Trim();
+        Inn = inn ?? throw new ArgumentNullException(nameof(inn));
+        Curator = curator ?? throw new ArgumentNullException(nameof(curator));
+    }
+
+    public static Contractor Create(int id, string name, INN inn, Employee employee) =>
+        new(ContractorId.Create(id), name, inn, employee);
+
+
+}

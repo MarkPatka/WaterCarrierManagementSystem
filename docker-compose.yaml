@@ -1,0 +1,19 @@
+services:
+  waterCarrier_db:
+    image: mysql:9.3.0
+    container_name: waterCarrier_db
+    environment:
+        MYSQL_ROOT_PASSWORD: secret_password   
+        MYSQL_DATABASE: waterCarrierDb
+        MYSQL_USER: super_secret_user
+        MYSQL_PASSWORD: super_secret_password
+    ports:
+        - "3306:3306"
+    volumes:
+        - waterCarrier_data:/var/lib/mysql
+        - ./mysql-init:/docker-entrypoint-initdb.d  
+    restart: unless-stopped
+
+volumes:
+    waterCarrier_data:
+        

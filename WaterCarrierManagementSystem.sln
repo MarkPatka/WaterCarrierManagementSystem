@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.env = .env
 		.gitignore = .gitignore
+		mysql-init\01-schema.sql = mysql-init\01-schema.sql
+		mysql-init\02-data.sql = mysql-init\02-data.sql
 		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject

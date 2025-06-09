@@ -1,4 +1,5 @@
 ﻿namespace WaterCarrierManagementSystem.Infrastructure.Persistence.Configurations;
+
 public record DatabaseSettings
 {
     public string DB_HOST     { get; init; } 
@@ -31,5 +32,9 @@ public record DatabaseSettings
     public static DatabaseSettings Create(
         string host, int port, string name, string user, string password) =>
             new(host, port, name, user, password);
+
+
+    public static DatabaseSettings Create(DatabaseSettings obj) =>
+            new(obj.DB_HOST, obj.DB_PORT, obj.DB_NAME, obj.DB_USER, obj.DB_PASSWORD);
 }
 

@@ -1,23 +1,42 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
-namespace WaterCarrierManagementSystem.Desktop;
+namespace WaterCarrierManagementSystem.Desktop.Views;
 
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
 public partial class MainWindow : Window
 {
+    private bool _isMaximized;
+
     public MainWindow()
     {
         InitializeComponent();
+    }
+
+    private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (e.LeftButton is System.Windows.Input.MouseButtonState.Pressed)
+        {
+            DragMove();
+        }
+    }
+
+    private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (e.ClickCount == 2)
+        {
+            if (_isMaximized)
+            {
+                WindowState = WindowState.Normal;
+                this.Width = 1080;
+                this.Height = 720;
+
+                _isMaximized = false;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+                _isMaximized = true;
+            }
+        }
+
     }
 }

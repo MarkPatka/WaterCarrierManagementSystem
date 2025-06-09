@@ -5,6 +5,7 @@ using System.Windows;
 using WaterCarrierManagementSystem.Application;
 using WaterCarrierManagementSystem.Desktop.Configurations;
 using WaterCarrierManagementSystem.Desktop.ViewModels.Interfaces;
+using WaterCarrierManagementSystem.Desktop.Views;
 using WaterCarrierManagementSystem.Infrastructure;
 
 namespace WaterCarrierManagementSystem.Desktop;

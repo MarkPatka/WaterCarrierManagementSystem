@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace WaterCarrierManagementSystem.Desktop.Views;
 
@@ -38,5 +41,25 @@ public partial class MainWindow : Window
             }
         }
 
+    }
+
+    public string ActiveTabName
+    {
+        get { return (string)GetValue(ActiveTabNameProperty); }
+        set { SetValue(ActiveTabNameProperty, value); }
+    }
+
+    public static readonly DependencyProperty ActiveTabNameProperty =
+        DependencyProperty.Register("ActiveTabName", typeof(string), typeof(MainWindow), new PropertyMetadata(string.Empty));
+
+    private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (sender is TabControl tabControl)
+        {
+            if (tabControl.SelectedItem is TabItem selectedTab)
+            {
+                ActiveTabName = selectedTab.Header.ToString() ?? "";
+            }
+        }
     }
 }

@@ -1,14 +1,53 @@
 ﻿<Application x:Class="WaterCarrierManagementSystem.Desktop.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:WaterCarrierManagementSystem.Desktop.Common.Converters" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Application.Resources>
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <!-- Set your base theme -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <!-- primary color -->
+                <ResourceDictionary>
+                    <!-- include your primary palette -->
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Indigo.Primary.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
 
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light" Color="#426DB1"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light.Foreground" Color="#9ECCFF"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="{StaticResource Primary500}"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Foreground" Color="{StaticResource Primary500Foreground}"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark" Color="{StaticResource Primary700}"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="{StaticResource Primary700Foreground}"/>
+                </ResourceDictionary>
+
+                <!-- secondary colour -->
+                <ResourceDictionary>
+                    <!-- include your secondary pallette -->
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Yellow.Secondary.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Light" Color="{StaticResource Secondary200}" />
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Light.Foreground" Color="{StaticResource Secondary200Foreground}" />
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary" Color="{StaticResource Secondary400}" />
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Foreground" Color="{StaticResource Secondary400Foreground}" />
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Dark" Color="{StaticResource Secondary700}" />
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Dark.Foreground" Color="{StaticResource Secondary700Foreground}" />
+                </ResourceDictionary>
+
+                <!--<materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="DeepPurple" SecondaryColor="Lime" />-->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
+
+                <ResourceDictionary Source="/Views/Assets/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+        
+            <converters:InputToVisibilityConverter x:Key="InputToVisibility"/>
+            <converters:ColorFromTransprent x:Key="ColorFromTransparent"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

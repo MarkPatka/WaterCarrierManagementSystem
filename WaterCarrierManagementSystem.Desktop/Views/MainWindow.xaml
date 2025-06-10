@@ -5,23 +5,20 @@
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WaterCarrierManagementSystem.Desktop"
+        xmlns:pages="clr-namespace:WaterCarrierManagementSystem.Desktop.Views.Pages"
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="720" 
         Width="1080"
         WindowStartupLocation="CenterScreen"
-        Style="{StaticResource MaterialDesignWindow}"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        Background="Transparent">
+        Style="{StaticResource MaterialDesignWindow}">
     <Border
-        Background="#eff2f7"
-        CornerRadius="30"
+        Background="#9ECCFF"
         MouseDown="Border_MouseDown"
         MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
@@ -34,18 +31,273 @@
 
                 <Button 
                     HorizontalAlignment="Left" 
-                    Margin="20 28 0 35"
-                    Content="{md:PackIcon Kind=Menu,Size=25}">
+                    Margin="10 28 0 35"
+                    Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                    Content="{md:PackIcon Kind=Menu,Size=25}"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    Background="Transparent">
                 </Button>
 
+                <!--LEFT MENU BUTTONS-->
                 <Border 
                     Grid.Row="1" 
-                    Background="#8050d0" 
-                    CornerRadius="0 50 0 30">
+                    Background="#426DB1" 
+                    CornerRadius="0 50 0 0">
+                    <DockPanel>
+                        <TextBlock
+                            Text="Merry Watercarrier &#010;CRM"
+                            Foreground="White" 
+                            FontSize="22"
+                            FontWeight="SemiBold"
+                            DockPanel.Dock="Top"
+                            TextAlignment="Center"
+                            Margin="5 25 0 10">
+                        </TextBlock>
+                        <TextBlock
+                            Text="Departments, Russia"
+                            Foreground="#9ECCFF" 
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            DockPanel.Dock="Top"
+                            TextAlignment="Center">
+                        </TextBlock>
+
+                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#FF6AAFFF"/>
+
+                        <StackPanel DockPanel.Dock="Top">
+                            <Button 
+                                Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon
+                                        Kind="Home"
+                                        VerticalAlignment="Center"
+                                        Margin="20 2 20 0"
+                                        Width="20" 
+                                        Height="20">
+                                    </md:PackIcon>
+                                    <TextBlock 
+                                        Text="HOME" 
+                                        VerticalAlignment="Bottom" 
+                                        Foreground="White">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button 
+                                Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon
+                                        Kind="Calendar"
+                                        VerticalAlignment="Center"
+                                        Margin="20 2 20 0"
+                                        Width="20" 
+                                        Height="20">
+                                    </md:PackIcon>
+                                    <TextBlock 
+                                        Text="EVENTS" 
+                                        VerticalAlignment="Bottom" 
+                                        Foreground="White">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button 
+                                Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon
+                                        Kind="AccountMultiple"
+                                        VerticalAlignment="Center"
+                                        Margin="20 2 20 0"
+                                        Width="20" 
+                                        Height="20">
+                                    </md:PackIcon>
+                                    <TextBlock 
+                                        Text="MEMBERS" 
+                                        VerticalAlignment="Bottom" 
+                                        Foreground="White">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button 
+                                Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon
+                                        Kind="AttachMoney"
+                                        VerticalAlignment="Center"
+                                        Margin="20 2 20 0"
+                                        Width="20" 
+                                        Height="20">
+                                    </md:PackIcon>
+                                    <TextBlock 
+                                        Text="ORDERS" 
+                                        VerticalAlignment="Bottom" 
+                                        Foreground="White">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button 
+                                Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <md:PackIcon
+                                        Kind="Message"
+                                        VerticalAlignment="Center"
+                                        Margin="20 2 20 0"
+                                        Width="20" 
+                                        Height="20">
+                                    </md:PackIcon>
+                                    <TextBlock 
+                                        Text="MESSAGES" 
+                                        VerticalAlignment="Bottom" 
+                                        Foreground="White">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <Button 
+                            Style="{StaticResource menuButton}"
+                            VerticalAlignment="Bottom"
+                            DockPanel.Dock="Bottom"
+                            Margin="15 3">
+                            <StackPanel Orientation="Horizontal">
+                                <md:PackIcon
+                                        Kind="Logout"
+                                        VerticalAlignment="Center"
+                                        Margin="20 2 20 0"
+                                        Width="20" 
+                                        Height="20">
+                                </md:PackIcon>
+                                <TextBlock 
+                                        Text="LOGOUT" 
+                                        VerticalAlignment="Bottom" 
+                                        Foreground="White">
+                                </TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                    </DockPanel>
                 </Border>
 
             </Grid>
-                     
+
+
+            <!--MAIN SECTION-->
+            <Grid Grid.Column="1" Margin="24,20,26,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--SEARCH TEXTBOX-->
+                <Grid
+                    x:Name="searchBoxGrid"
+                    Width="310"
+                    HorizontalAlignment="Left">
+                    <TextBox 
+                        x:Name="inputPreview" 
+                        Text="Search Here . . ." 
+                        FontSize="18" 
+                        Width="300"
+                        VerticalContentAlignment="Center"
+                        Style="{StaticResource textBoxSearch}"
+                        TextAlignment="Left">
+                        <TextBox.Visibility>
+                            <MultiBinding Converter="{StaticResource InputToVisibility}">
+                                <Binding ElementName="inputText" Path="Text"/>
+                                <Binding ElementName="inputText" Path="IsFocused"/>
+                            </MultiBinding>
+                        </TextBox.Visibility>
+                    </TextBox>
+
+
+                    <TextBox 
+                        x:Name="inputText"
+                        Width="300"
+                        FontSize="18" 
+                        VerticalContentAlignment="Center"
+                        Style="{StaticResource textBoxSearch}"
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.Background>
+                            <MultiBinding Converter="{StaticResource ColorFromTransparent}">
+                                <Binding ElementName="inputPreview" Path="Visibility"/>
+                                <Binding ElementName="inputPreview" Path="Background"/>
+                            </MultiBinding>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <md:PackIcon 
+                        Kind="Magnify" 
+                        Width="20" 
+                        Height="20" 
+                        VerticalAlignment="Center" 
+                        Margin="0 0 15 0" 
+                        Foreground="#B0B9C6"
+                        HorizontalAlignment="Right">
+                    </md:PackIcon>
+                </Grid>
+
+                <TextBlock 
+                    Text="{Binding ActiveTabName, RelativeSource={RelativeSource AncestorType=Window}}" 
+                    Grid.Row="1" 
+                    FontSize="32" 
+                    FontWeight="SemiBold" 
+                    Margin="0 20 0 0"
+                    HorizontalAlignment="Left"
+                    Foreground="Black">
+                </TextBlock>
+                <Button
+                    HorizontalAlignment="Right"
+                    Margin="0 20 0 0"
+                    FontSize="13"
+                    Grid.Row="1"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Background="#426DB1"
+                    BorderThickness="0"
+                    BorderBrush="Transparent"
+                    VerticalContentAlignment="Center"
+                    md:ButtonAssist.CornerRadius="10">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon
+                            VerticalAlignment="Center"
+                            Width="25"
+                            Height="25"
+                            Kind="Plus"
+                            Margin="0 1 8 0"/>
+                        <TextBlock 
+                            VerticalAlignment="Center" 
+                            Text="Add new">
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Separator Height="2" Grid.Row="2" Background="#DAE2EA" Margin="0 -1 0 10"/>
+
+
+                <DockPanel Grid.Row="3">
+                    <TabControl 
+                        DockPanel.Dock="Top" 
+                        BorderThickness="0" 
+                        Background="#f5f5f5"
+                        SelectionChanged="TabControl_SelectionChanged">
+
+                        <TabItem Header="Employees">
+                            <pages:EmployeesPage />
+                        </TabItem>
+
+                        <TabItem Header="Contractors">
+                            <pages:ContractorsPage />
+                        </TabItem>
+                        <TabItem Header="Orders">
+                            <pages:OrdersPage />
+                        </TabItem>
+                        
+                    </TabControl>
+                </DockPanel>
+            </Grid>
         </Grid>
     </Border>
 </Window>

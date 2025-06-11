@@ -83,6 +83,9 @@
 
             </Style>
 
+            
+            
+            
             <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="LightBlue"/>
             <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="Black"/>
             <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#9ECCFF"/>
@@ -91,7 +94,6 @@
             <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="White"/>
             <SolidColorBrush x:Key="SecondaryAccentBrush" Color="Yellow"/>
             <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="Black"/>
-
         </ResourceDictionary>
 
     </ResourceDictionary.MergedDictionaries>

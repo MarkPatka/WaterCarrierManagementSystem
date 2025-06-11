@@ -32,6 +32,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\NewEmployeeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\NewContractorWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
   
   <PropertyGroup>
   	<StartupObject>WaterCarrierManagementSystem.Desktop.Program</StartupObject>

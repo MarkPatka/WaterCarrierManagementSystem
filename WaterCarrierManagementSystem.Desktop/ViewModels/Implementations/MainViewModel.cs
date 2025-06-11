@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using WaterCarrierManagementSystem.Desktop.Commands;
+using WaterCarrierManagementSystem.Desktop.Commands.Abstract;
 using WaterCarrierManagementSystem.Desktop.Models;
 using WaterCarrierManagementSystem.Desktop.ViewModels.Interfaces;
 
@@ -8,7 +10,10 @@ public class MainViewModel : ViewModelBase, IMainViewModel
 {
     public static string Title => "Watercarrier Management System";
 
-    public string SelectedPageName { get; set; } 
+    private readonly ICommandFactory _commandFactory;
+    private readonly OpenAddTabItemWindowCommand _openAddTabItemWindowCommand;
+
+
     public ObservableCollection<ContractorModel> Contractors 
     {
         get => _contractors;

@@ -255,6 +255,8 @@
                     FontSize="13"
                     Grid.Row="1"
                     Style="{StaticResource MaterialDesignRaisedButton}"
+                    Command="{Binding OpenAddTabItemWindow}"
+                    CommandParameter="{Binding ActiveTabName, RelativeSource={RelativeSource AncestorType=Window}}"
                     Background="#426DB1"
                     BorderThickness="0"
                     BorderBrush="Transparent"
@@ -275,7 +277,6 @@
                 </Button>
 
                 <Separator Height="2" Grid.Row="2" Background="#DAE2EA" Margin="0 -1 0 10"/>
-
 
                 <DockPanel Grid.Row="3">
                     <TabControl 

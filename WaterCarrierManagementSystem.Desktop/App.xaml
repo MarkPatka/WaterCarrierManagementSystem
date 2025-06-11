@@ -7,26 +7,21 @@
         
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Set your base theme -->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <!-- primary color -->
                 <ResourceDictionary>
-                    <!-- include your primary palette -->
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Indigo.Primary.xaml" />
+                        <ResourceDictionary Source="/Views/Assets/Styles.xaml"/>
                     </ResourceDictionary.MergedDictionaries>
 
-                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light" Color="#426DB1"/>
+                    <!--<SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light" Color="#426DB1"/>
                     <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light.Foreground" Color="#9ECCFF"/>
                     <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="{StaticResource Primary500}"/>
                     <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Foreground" Color="{StaticResource Primary500Foreground}"/>
                     <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark" Color="{StaticResource Primary700}"/>
-                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="{StaticResource Primary700Foreground}"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="{StaticResource Primary700Foreground}"/>-->
                 </ResourceDictionary>
 
-                <!-- secondary colour -->
                 <ResourceDictionary>
-                    <!-- include your secondary pallette -->
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Yellow.Secondary.xaml" />
                     </ResourceDictionary.MergedDictionaries>
@@ -39,7 +34,6 @@
                     <SolidColorBrush x:Key="MaterialDesign.Brush.Secondary.Dark.Foreground" Color="{StaticResource Secondary700Foreground}" />
                 </ResourceDictionary>
 
-                <!--<materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="DeepPurple" SecondaryColor="Lime" />-->
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
 
                 <ResourceDictionary Source="/Views/Assets/Styles.xaml" />

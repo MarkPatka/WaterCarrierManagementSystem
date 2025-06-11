@@ -4,6 +4,9 @@ using FluentNHibernate.Conventions.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NHibernate;
+using NHibernate.Dialect;
+using NHibernate.Driver.MySqlConnector;
+using NHibernate.Tool.hbm2ddl;
 using System.Reflection;
 using WaterCarrierManagementSystem.Application.Common.Persistence;
 using WaterCarrierManagementSystem.Application.Common.Persistence.Repositories;
@@ -27,14 +30,18 @@ public static class DependencyInjection
 
     private static IServiceCollection RegisterNHibernate(this IServiceCollection services)
     {
+
         services.AddSingleton<ISessionFactory>(provider =>
         {
-            var dbSettings = provider.GetRequiredService<IOptions<DatabaseSettings>>().Value;
-
+            var dbSettings = provider
+                .GetRequiredService<IOptions<DatabaseSettings>>().Value;
+;
             return Fluently.Configure()
                 .Database(MySQLConfiguration.Standard
                     .ConnectionString(dbSettings.ConnectionString)
                     .AdoNetBatchSize(20)
+                    .Driver<MySqlConnectorDriver>()
+                    .Dialect<MySQL55Dialect>()
                 )
                 .Mappings(m => 
                 {

@@ -2,11 +2,13 @@
 
 public record DatabaseSettings
 {
-    public string DB_HOST     { get; init; } 
-    public int DB_PORT        { get; init; } 
-    public string DB_NAME     { get; init; } 
-    public string DB_USER     { get; init; } 
-    public string DB_PASSWORD { get; init; } 
+    public DatabaseSettings() { }
+
+    public string DB_HOST     { get; set; } 
+    public int DB_PORT        { get; set; } 
+    public string DB_NAME     { get; set; } 
+    public string DB_USER     { get; set; } 
+    public string DB_PASSWORD { get; set; } 
 
     public string ConnectionString =>
         $"Server={DB_HOST};" +

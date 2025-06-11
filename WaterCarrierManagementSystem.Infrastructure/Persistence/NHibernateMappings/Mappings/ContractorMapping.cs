@@ -14,8 +14,7 @@ public class ContractorMapping
 
         Id(x => x.Id)
             .Column("id")
-            .CustomType<ContractorIdType>()
-            .GeneratedBy.Identity();
+            .CustomType<ContractorIdType>();
 
         Map(x => x.Name)
             .Length(100)
@@ -23,7 +22,7 @@ public class ContractorMapping
 
         Map(x => x.Inn)
             .Column("inn")
-            .CustomType<INNType>()
+            .CustomType<InnType>()
             .Not.Nullable();
 
         References(x => x.Curator)

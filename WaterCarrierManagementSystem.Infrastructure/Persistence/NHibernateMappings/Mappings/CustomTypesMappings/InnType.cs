@@ -8,13 +8,13 @@ using System.Data;
 
 namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings;
 
-public class INNType : IUserType
+public class InnType : IUserType
 {
     public SqlType[] SqlTypes => [new SqlType(DbType.Int64)];
     public Type ReturnedType => typeof(INN);
     public bool IsMutable => false;
 
-    public INNType()
+    public InnType()
     {
         
     }

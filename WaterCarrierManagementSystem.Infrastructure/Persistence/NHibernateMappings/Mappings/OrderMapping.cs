@@ -13,9 +13,8 @@ public class OrderMapping
         Table("Orders");
 
         Id(x => x.Id)
-            .Column("Id")
-            .CustomType<OrderIdType>()
-            .GeneratedBy.GuidComb();
+            .Column("id")
+            .CustomType<OrderIdType>();
 
         Map(x => x.OrderDateTime)
             .Not.Nullable();

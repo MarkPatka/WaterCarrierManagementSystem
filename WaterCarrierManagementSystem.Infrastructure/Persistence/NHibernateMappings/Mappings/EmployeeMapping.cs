@@ -14,22 +14,29 @@ public class EmployeeMapping
         Table("Employees");
 
         Id(x => x.Id)
-            .Column("Id")
-            .CustomType<EmployeeIdType>()
-            .GeneratedBy.Assigned();
+            .Column("id")
+            .CustomType<EmployeeIdType>();
 
-        Component(x => x.Name, m =>
-        {
-            m.Map(x => x.FirstName, "FirstName").Length(100);
-            m.Map(x => x.LastName, "LastName").Length(100);
-            m.Map(x => x.MiddleName, "MiddleName").Length(100).Nullable();
-        });
+        Map(x => x.Name)
+        .CustomType<FullNameType>()  
+            .Columns.Add("first_name")   
+            .Columns.Add("last_name")
+            .Columns.Add("middle_name");
+
+        //Component(x => x.Name, m =>
+        //{
+        //    m.Map(x => x.FirstName, "name").Length(100);
+        //    m.Map(x => x.LastName, "last_name").Length(100);
+        //    m.Map(x => x.MiddleName, "middle_name").Length(100).Nullable();
+        //});
 
         Map(x => x.Position)
+            .Column("position")
             .CustomType<PositionType>()
             .Not.Nullable();
 
         Map(x => x.BirthDate)
+            .Column("birth_date")
             .CustomType<DateOnlyType>()
             .Not.Nullable();
     }

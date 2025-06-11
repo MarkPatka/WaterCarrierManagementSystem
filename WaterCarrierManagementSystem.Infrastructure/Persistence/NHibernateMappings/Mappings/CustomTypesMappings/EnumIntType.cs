@@ -9,19 +9,19 @@ using WaterCarrierManagementSystem.Domain.Common.Abstract;
 
 namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings;
 
-public abstract class EnumStringType<T> 
+public abstract class EnumIntType<T> 
     : IUserType where T : Enumeration
 {
-    public SqlType[] SqlTypes => [new SqlType(DbType.String)];
+    public SqlType[] SqlTypes => [new SqlType(DbType.Int32)];
     public Type ReturnedType { get; }
     public bool IsMutable => false;
 
-    protected EnumStringType()
+    protected EnumIntType()
     {
         ReturnedType = typeof(T);
     }
 
-    protected EnumStringType(Type enumType)
+    protected EnumIntType(Type enumType)
     {
         ReturnedType = enumType;
     }
@@ -32,12 +32,10 @@ public abstract class EnumStringType<T>
         ISessionImplementor session,
         object owner)
     {
-        var name = NHibernateUtil.String
-            .NullSafeGet(rs, names[0], session) as string;
+        var id = (Int32)NHibernateUtil.Int32
+            .NullSafeGet(rs, names[0], session);
 
-        ArgumentNullException.ThrowIfNull(name);
-
-        return Enumeration.GetFromName<T>(name);
+        return Enumeration.GetFromId<T>(id);
     }
 
     public void NullSafeSet(
@@ -49,7 +47,7 @@ public abstract class EnumStringType<T>
         var enumeration = value as Enumeration;
 
         NHibernateUtil.String
-            .NullSafeSet(cmd, enumeration?.Name, index, session);
+            .NullSafeSet(cmd, enumeration?.Id, index, session);
     }
 
     public object DeepCopy(object value) => value;

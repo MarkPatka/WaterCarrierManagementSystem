@@ -2,7 +2,7 @@
 
 namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings;
 
-public class PositionType : EnumStringType<Position>
+public class PositionType : EnumIntType<Position>
 {
     public PositionType() : base(typeof(Position)) { }
 }

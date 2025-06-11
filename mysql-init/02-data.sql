@@ -1,4 +1,4 @@
-INSERT INTO Employees (name, last_name, middle_name, position, birth_date) VALUES
+INSERT INTO Employees (first_name, last_name, middle_name, position, birth_date) VALUES
 ('Иван', 'Иванов', 'Иванович', 1, '1985-05-15'),
 ('Петр', 'Петров', 'Петрович', 2, '1990-07-22'),
 ('Мария', 'Сидорова', 'Алексеевна', 1, '1988-03-10'),

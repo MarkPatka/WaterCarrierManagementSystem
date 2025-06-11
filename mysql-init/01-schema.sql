@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS Employees (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     middle_name VARCHAR(100),
     position TINYINT UNSIGNED NOT NULL,
@@ -35,3 +35,4 @@ CREATE TABLE IF NOT EXISTS Orders (
 CREATE INDEX idx_orders_employee ON Orders(employee_id);
 CREATE INDEX idx_orders_contractor ON Orders(contractor_id);
 CREATE INDEX idx_contractors_curator ON Contractors(curator_id);
+

@@ -9,13 +9,13 @@ public class Order : AggregateRoot<OrderId>
 {
     public virtual DateTime OrderDateTime  { get; }
     public virtual decimal Amount          { get; }
-    public virtual Employee Employee       { get; }
-    public virtual Contractor Counterparty { get; }
+    public virtual Employee Employee       { get; } = null!;
+    public virtual Contractor Contractor   { get; } = null!;
 
     private Order() { } 
 
     private Order(OrderId id, 
-        DateTime orderDate, decimal amount, Employee employee, Contractor counterparty) 
+        DateTime orderDate, decimal amount, Employee employee, Contractor contractor) 
         : base(id)
     {
         if (amount <= 0)
@@ -24,7 +24,7 @@ public class Order : AggregateRoot<OrderId>
         OrderDateTime = orderDate;
         Amount = amount;
         Employee = employee ?? throw new ArgumentNullException(nameof(employee));
-        Counterparty = counterparty ?? throw new ArgumentNullException(nameof(counterparty));
+        Contractor = contractor ?? throw new ArgumentNullException(nameof(contractor));
     }
 
     public static Order Create(DateTime orderDate, decimal amount, Employee employee, Contractor counterparty) =>

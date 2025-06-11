@@ -32,6 +32,11 @@ public abstract class Enumeration
     {
         return Parse<T, int>(id, i => i.Id == id);
     }
+    public static T GetFromName<T>(string name)
+        where T : Enumeration
+    {
+        return Parse<T, string>(name, i => i.Name == name);
+    }
     public int CompareTo(object? obj)
     {
         if (obj is null) return 1;

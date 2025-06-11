@@ -2,20 +2,20 @@
 
 namespace WaterCarrierManagementSystem.Domain.ContractorAggregate.ValueObjects;
 
-public class InnId : ValueObject
+public class INN : ValueObject
 {
-    public int Value { get; }
+    public Int64 Value { get; }
 
-    private InnId(int value)
+    private INN(Int64 value)
     {
         Value = value;
     }
 
-    public static InnId Create(int number)
+    public static INN Create(Int64 number)
     {
         if (IsValid(number.ToString()))
         {
-            return new InnId(number);
+            return new INN(number);
         }
         else throw new ArgumentException(
             "Invalid INN format.", nameof(number));

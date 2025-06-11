@@ -1,15 +1,18 @@
 ﻿using Sprache;
 using System.Windows;
 using WaterCarrierManagementSystem.Desktop.Commands.Abstract;
+using WaterCarrierManagementSystem.Desktop.ViewModels.Implementations;
 using WaterCarrierManagementSystem.Desktop.ViewModels.Interfaces;
 using WaterCarrierManagementSystem.Desktop.Views;
 using Windows.ApplicationModel.Wallet;
 
 namespace WaterCarrierManagementSystem.Desktop.Commands;
 
-public class OpenAddTabItemWindowCommand()
+public class OpenAddTabItemWindowCommand(IViewModelFactory viewModelFactory)
     : AsyncRelayCommand<OpenAddTabItemWindowResult>
 {
+    private readonly IViewModelFactory _viewModelFactory = viewModelFactory;
+
 
     public override Func<object?, Task<CommandResult<OpenAddTabItemWindowResult>>> ExecuteCommand => OpenWindow;
 
@@ -22,30 +25,35 @@ public class OpenAddTabItemWindowCommand()
     {
         try
         {
-            string tabName = parameter?.ToString() ?? "";
-            if (tabName.Equals("Orders"))
+            ArgumentNullException.ThrowIfNull(parameter);
+            string tabName = parameter.ToString()!;
+
+            var window = tabName switch
             {
-                var view = new NewOrderWindow()
-                {
-                    Owner = System.Windows.Application.Current.MainWindow
-                };
-                OpenAddTabItemWindowResult window = new(view);
-                return new CommandResult<OpenAddTabItemWindowResult>(window);
-            }
-            else throw new NotImplementedException();
+                "Orders" => new OpenAddTabItemWindowResult(new NewOrderWindow 
+                { 
+                    Owner = System.Windows.Application.Current.MainWindow,
+                    DataContext = _viewModelFactory.GetViewModel<INewOrderViewModel>()
+                }),
+                "Employees" => new OpenAddTabItemWindowResult(new NewEmployeeWindow 
+                { 
+                    Owner = System.Windows.Application.Current.MainWindow,
+                    DataContext = _viewModelFactory.GetViewModel<INewEmployeeViewModel>()
+                }),
+                "Contractors" => new OpenAddTabItemWindowResult(new NewContractorWindow 
+                { 
+                    Owner = System.Windows.Application.Current.MainWindow,
+                    DataContext = _viewModelFactory.GetViewModel<INewContractorViewModel>()
+
+                }),
+                _ => throw new ArgumentException($"Unresolved Tab Item Name {tabName}")
+            };
+            return new CommandResult<OpenAddTabItemWindowResult>(window);
         }
         catch (Exception ex)
         {
             ErrorHandler?.Invoke(ex);
             return new CommandResult<OpenAddTabItemWindowResult>(ex);
-        }
-    }
-
-    private void View_Closed(object? sender, EventArgs e)
-    {
-        if (sender is Window w && w is not null)
-        {
-            ((Window)sender).Closed -= View_Closed;
         }
     }
 

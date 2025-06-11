@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
+using WaterCarrierManagementSystem.Desktop.Commands;
+using WaterCarrierManagementSystem.Desktop.Commands.Abstract;
 using WaterCarrierManagementSystem.Desktop.ViewModels.Implementations;
 using WaterCarrierManagementSystem.Desktop.ViewModels.Interfaces;
 using WaterCarrierManagementSystem.Desktop.Views;
@@ -14,6 +16,7 @@ public static class DependencyInjection
     {
         services
             .AddConfiguration()
+            .RegisterCommands()
             .RegisterViewModels()
             .RegisterViews()
             ;
@@ -24,11 +27,42 @@ public static class DependencyInjection
     public static IServiceCollection RegisterViews(this IServiceCollection services)
     {
         services.AddSingleton<MainWindow>();
+
+        services.AddTransient<NewContractorWindow>();
+        services.AddTransient<NewEmployeeWindow>();
+        services.AddTransient<NewOrderWindow>();
+
         return services;
     }
     public static IServiceCollection RegisterViewModels(this IServiceCollection services)
     {
-        services.AddSingleton<IMainViewModel, MainViewModel>();
+        services
+            .AddTransient<IViewModelFactory, ViewModelFactory>();
+
+        services
+            .AddSingleton<IMainViewModel, MainViewModel>();
+
+        services
+            .AddTransient<INewOrderViewModel, NewOrderViewModel>()
+            .AddTransient<INewEmployeeViewModel, NewEmployeeViewModel>()
+            .AddTransient<INewContractorViewModel, NewContractorViewModel>();
+
+
+        return services;
+    }
+    private static IServiceCollection RegisterCommands(this IServiceCollection services)
+    {
+        services
+            .AddTransient<ICommandFactory, CommandFactory>();
+
+
+        services
+            .AddTransient<LoadContractorsCommand>()
+            .AddTransient<LoadEmployeesCommand>()
+            .AddTransient<LoadOrdersCommand>()
+            .AddTransient<OpenAddTabItemWindowCommand>()
+            ;
+
         return services;
     }
     private static IServiceCollection AddConfiguration(this IServiceCollection services)
@@ -56,7 +90,13 @@ public static class DependencyInjection
             ?? throw new ArgumentNullException(nameof(Environment.GetEnvironmentVariable));
 
         services.Configure<DatabaseSettings>(options =>
-            DatabaseSettings.Create(options));
+        {
+            options.DB_HOST = host;
+            options.DB_PORT = port;
+            options.DB_USER = user;
+            options.DB_NAME = name;
+            options.DB_PASSWORD = pass;
+        });
 
         return services;
     }

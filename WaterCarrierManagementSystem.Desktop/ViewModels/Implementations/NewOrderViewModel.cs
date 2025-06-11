@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using WaterCarrierManagementSystem.Desktop.Commands;
 using WaterCarrierManagementSystem.Desktop.Commands.Abstract;
 using WaterCarrierManagementSystem.Desktop.ViewModels.Interfaces;
@@ -11,10 +10,10 @@ namespace WaterCarrierManagementSystem.Desktop.ViewModels.Implementations;
 public class NewOrderViewModel 
     : ViewModelBase, INewOrderViewModel
 {
-    public ObservableCollection<Employee> Employees => [.. _employees];
-    public ObservableCollection<Contractor> Contractors => [.. _contractors];
+    public ObservableCollection<string> Employees => [.. _employees];
+    public ObservableCollection<string> Contractors => [.. _contractors];
     
-    public Employee SelectedEmployee 
+    public Employee? SelectedEmployee 
     {
         get => _selectedEmployee;
         set
@@ -23,7 +22,7 @@ public class NewOrderViewModel
             OnPropertyChanged();
         }
     }
-    public Contractor SelectedContractor
+    public Contractor? SelectedContractor
     {
         get => _selectedContractor;
         set
@@ -68,24 +67,48 @@ public class NewOrderViewModel
 
         _loadEmployees = _commandFactory.GetCommand<LoadEmployeesCommand>();
         _loadEmployees.CommandCompleted += OnEmployeesLoaded;
-        //_employees.AddRange(employees);
-        //_contractors.AddRange(contractors);
+
+        _loadContractors = _commandFactory.GetCommand<LoadContractorsCommand>();
+        _loadContractors.CommandCompleted += OnContractorsLoaded;
+
+        LoadData();
+    }
+
+    private void LoadData()
+    {
+        _loadEmployees.Execute(null);
+        _loadContractors.Execute(null);
     }
 
     private void OnEmployeesLoaded(object? sender, CommandResult<LoadEmployeesResult> result)
     {
         if (result.Status == CommandStatus.SUCCESS && result.Value is LoadEmployeesResult data)
         {
-            _employees.AddRange(result.Value.Employees);
+            var names = data.Employees
+                .Select(e => $"{e.Name.LastName} {e.Name.FirstName} {e.Name.MiddleName}");
+
+            _employees.AddRange(names);
             OnPropertyChanged(nameof(Employees));
+        }
+    }
+    private void OnContractorsLoaded(object? sender, CommandResult<LoadContractorsResult> result)
+    {
+        if (result.Status == CommandStatus.SUCCESS && result.Value is LoadContractorsResult data)
+        {
+            var names = data.Contractors
+                .Select(c => $"{c.Name}");
+
+            _contractors.AddRange(names);
+            OnPropertyChanged(nameof(Contractors));
         }
     }
 
     private readonly ICommandFactory _commandFactory;
     private readonly LoadEmployeesCommand _loadEmployees;
+    private readonly LoadContractorsCommand _loadContractors;
 
-    private readonly List<Employee> _employees = [];
-    private readonly List<Contractor> _contractors = [];
+    private readonly List<string> _employees = [];
+    private readonly List<string> _contractors = [];
 
     private Employee? _selectedEmployee;
     private Contractor? _selectedContractor;

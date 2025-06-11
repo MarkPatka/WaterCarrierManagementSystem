@@ -11,13 +11,13 @@ public class LoadOrdersCommand(IUnitOfWork unitOfWork)
 {
     private readonly IUnitOfWork _contractorsRepositoryUnit = unitOfWork;
 
-    public override Func<object?, Task<CommandResult<LoadOrdersResult>>> ExecuteCommand => LoadAllContractors;
+    public override Func<object?, Task<CommandResult<LoadOrdersResult>>> ExecuteCommand => LoadAllOrders;
 
     public override Predicate<object?>? CanExecuteCommand => null;
 
     public override Action<Exception>? ErrorHandler => LogError;
 
-    private async Task<CommandResult<LoadOrdersResult>> LoadAllContractors(object? parameter = null)
+    private async Task<CommandResult<LoadOrdersResult>> LoadAllOrders(object? parameter = null)
     {
         try
         {

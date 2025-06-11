@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using WaterCarrierManagementSystem.Desktop.Commands.Abstract;
 
-namespace WaterCarrierManagementSystem.Wpf.Commands;
+namespace WaterCarrierManagementSystem.Desktop.Commands;
 
 public class CommandFactory(IServiceProvider serviceProvider) : ICommandFactory
 {

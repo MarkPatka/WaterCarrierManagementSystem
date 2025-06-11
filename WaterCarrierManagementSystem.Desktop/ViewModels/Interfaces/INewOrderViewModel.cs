@@ -1,5 +1,5 @@
 ﻿namespace WaterCarrierManagementSystem.Desktop.ViewModels.Interfaces;
 
-public interface INewOrderViewModel
+public interface INewOrderViewModel : IBaseViewModel
 {
 }

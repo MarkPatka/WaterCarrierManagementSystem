@@ -62,6 +62,8 @@
                 <!--EMPLOYEE-->
                 <ComboBox 
                     Style="{StaticResource MaterialDesignComboBox}"
+                    ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedEmployee, UpdateSourceTrigger=PropertyChanged}"
                     md:HintAssist.Hint="  Employee"
                     Background="#FFFFFF"
                     Foreground="DimGray"
@@ -76,6 +78,8 @@
                 <!--CONTRACTOR-->
                 <ComboBox 
                     Style="{StaticResource MaterialDesignComboBox}"
+                    ItemsSource="{Binding Contractors, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedContractor, UpdateSourceTrigger=PropertyChanged}"
                     md:HintAssist.Hint="  Contaractor"
                     md:HintAssist.IsFloating="True"
                     Background="#FFFFFF"

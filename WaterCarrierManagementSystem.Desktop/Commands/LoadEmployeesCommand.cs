@@ -12,18 +12,18 @@ public class LoadEmployeesCommand(IUnitOfWork unitOfWork)
 {
     private readonly IUnitOfWork _contractorsRepositoryUnit = unitOfWork;
 
-    public override Func<object?, Task<CommandResult<LoadEmployeesResult>>> ExecuteCommand => LoadAllContractors;
+    public override Func<object?, Task<CommandResult<LoadEmployeesResult>>> ExecuteCommand => LoadAllEmployees;
 
     public override Predicate<object?>? CanExecuteCommand => null;
 
     public override Action<Exception>? ErrorHandler => LogError;
 
-    private async Task<CommandResult<LoadEmployeesResult>> LoadAllContractors(object? parameter = null)
+    private async Task<CommandResult<LoadEmployeesResult>> LoadAllEmployees(object? parameter = null)
     {
         try
         {
-            var repository = (GenericRepository<Employee>)_contractorsRepositoryUnit
-                .GetGenericRepository<IEmployeeRepository>();
+            var repository = _contractorsRepositoryUnit
+                .GetRepository<IEmployeeRepository>();
 
             var data = await repository.GetAll();
             LoadEmployeesResult result = new(data);

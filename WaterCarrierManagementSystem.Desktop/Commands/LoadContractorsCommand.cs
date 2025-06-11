@@ -20,8 +20,8 @@ public class LoadContractorsCommand(IUnitOfWork unitOfWork)
     {
         try
         {
-            var repository = (GenericRepository<Contractor>)_contractorsRepositoryUnit
-                .GetGenericRepository<IContractorRepository>();
+            var repository = _contractorsRepositoryUnit
+                .GetRepository<IContractorRepository>();
 
             var data = await repository.GetAll();
             LoadContractorsResult result = new(data);

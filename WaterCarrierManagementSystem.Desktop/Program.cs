@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using WaterCarrierManagementSystem.Application;
 using WaterCarrierManagementSystem.Desktop.Configurations;

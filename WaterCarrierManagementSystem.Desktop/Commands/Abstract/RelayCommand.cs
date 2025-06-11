@@ -4,8 +4,8 @@ namespace WaterCarrierManagementSystem.Desktop.Commands.Abstract;
 
 public abstract class RelayCommand : ICommand
 {
-    private readonly Action<object?> _execute;
-    private readonly Predicate<object?>? _canExecute;
+    public abstract Action<object?> ExecuteCommand { get; }
+    public abstract Predicate<object?>? CanExecuteCommand { get; }
 
     public event EventHandler? CanExecuteChanged
     {
@@ -13,24 +13,13 @@ public abstract class RelayCommand : ICommand
         remove { CommandManager.RequerySuggested -= value; }
     }
 
-    public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
-    {
-        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-        _canExecute = canExecute;
-    }
-
-    public RelayCommand(Action execute, Predicate<object?>? canExecute = null)
-        : this(_ => execute(), canExecute)
-    {
-    }
-
     public bool CanExecute(object? parameter)
     {
-        return _canExecute == null || _canExecute(parameter);
+        return CanExecute == null || CanExecute(parameter);
     }
 
     public void Execute(object? parameter)
     {
-        _execute(parameter);
+        Execute(parameter);
     }
 }

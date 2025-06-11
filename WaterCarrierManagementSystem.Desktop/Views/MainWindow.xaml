@@ -255,7 +255,7 @@
                     FontSize="13"
                     Grid.Row="1"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    Command="{Binding OpenAddTabItemWindow}"
+                    Command="{Binding OpenAddTabItemCommand}"
                     CommandParameter="{Binding ActiveTabName, RelativeSource={RelativeSource AncestorType=Window}}"
                     Background="#426DB1"
                     BorderThickness="0"

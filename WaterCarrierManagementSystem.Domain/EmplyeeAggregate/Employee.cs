@@ -1,5 +1,4 @@
 ﻿using WaterCarrierManagementSystem.Domain.Common.Abstract;
-using WaterCarrierManagementSystem.Domain.EmplyeeAggregate.Entities;
 using WaterCarrierManagementSystem.Domain.EmplyeeAggregate.Enumerations;
 using WaterCarrierManagementSystem.Domain.EmplyeeAggregate.ValueObjects;
 
@@ -7,12 +6,12 @@ namespace WaterCarrierManagementSystem.Domain.EmplyeeAggregate;
 
 public class Employee : AggregateRoot<EmployeeId>
 {
-    public virtual FullName Name      { get; }
-    public virtual Position Position  { get; }
-    public virtual DateOnly BirthDate { get; }
+    public virtual FullName Name      { get; protected set; }
+    public virtual Position Position  { get; protected set; }
+    public virtual DateOnly BirthDate { get; protected set; }
 
 #pragma warning disable CS8618
-    private Employee() { }
+    protected Employee() { }
 #pragma warning restore CS8618
     
     private Employee(EmployeeId id, 
@@ -26,4 +25,7 @@ public class Employee : AggregateRoot<EmployeeId>
 
     public static Employee Create(int id, FullName name, Position position, DateOnly birthDate) =>
         new(EmployeeId.Create(id), name, position, birthDate);
+
+    public override bool Equals(object obj) => base.Equals(obj);
+    public override int GetHashCode() => base.GetHashCode();
 }

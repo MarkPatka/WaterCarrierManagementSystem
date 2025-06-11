@@ -10,7 +10,7 @@ public class Contractor : AggregateRoot<ContractorId>
     public virtual INN Inn          { get; } = null!;
     public virtual Employee Curator { get; } = null!;
 
-    private Contractor() { } 
+    protected Contractor() { } 
 
     private Contractor(ContractorId id, 
         string name, Int64 inn, Employee curator) 
@@ -27,5 +27,6 @@ public class Contractor : AggregateRoot<ContractorId>
     public static Contractor Create(int id, string name, Int64 inn, Employee employee) =>
         new(ContractorId.Create(id), name, inn, employee);
 
-
+    public override bool Equals(object obj) => base.Equals(obj);
+    public override int GetHashCode() => base.GetHashCode();
 }

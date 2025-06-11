@@ -13,7 +13,7 @@ public abstract class Entity<Tid> :
     protected Entity(Tid id) => 
         Id = id;
 
-    public bool Equals(Entity<Tid>? other) =>
+    public virtual bool Equals(Entity<Tid>? other) =>
         Equals((object?)other);
 
     public override bool Equals(object? obj) =>

@@ -35,7 +35,7 @@ public abstract class Enumeration
     public static T GetFromName<T>(string name)
         where T : Enumeration
     {
-        return Parse<T, string>(name, i => i.Name == name);
+        return Parse<T, string>(name, i => string.Equals(i.Name, name));
     }
     public int CompareTo(object? obj)
     {

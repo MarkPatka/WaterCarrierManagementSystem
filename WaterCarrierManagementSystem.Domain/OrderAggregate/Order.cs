@@ -12,7 +12,7 @@ public class Order : AggregateRoot<OrderId>
     public virtual Employee Employee       { get; } = null!;
     public virtual Contractor Contractor   { get; } = null!;
 
-    private Order() { } 
+    protected Order() { } 
 
     private Order(OrderId id, 
         DateTime orderDate, decimal amount, Employee employee, Contractor contractor) 
@@ -29,4 +29,8 @@ public class Order : AggregateRoot<OrderId>
 
     public static Order Create(DateTime orderDate, decimal amount, Employee employee, Contractor counterparty) =>
         new(OrderId.Create(Guid.NewGuid()), orderDate, amount, employee, counterparty);
+
+
+    public override bool Equals(object obj) => base.Equals(obj);
+    public override int GetHashCode() => base.GetHashCode();
 }

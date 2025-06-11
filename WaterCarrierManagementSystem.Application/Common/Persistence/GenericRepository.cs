@@ -1,4 +1,6 @@
 ﻿using NHibernate;
+using NHibernate.Linq;
+using System.Linq.Expressions;
 
 namespace WaterCarrierManagementSystem.Application.Common.Persistence;
 
@@ -10,6 +12,25 @@ public class GenericRepository<TEntity>
     public GenericRepository(ISession session)
     {
         _session = session;
+    }
+
+    public virtual async Task<IList<TEntity>> GetAll()
+    {
+        return await _session.Query<TEntity>()
+            .ToListAsync();
+    }
+    public virtual async Task<IList<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate)
+    {
+        return await _session.Query<TEntity>()
+            .Where(predicate).ToListAsync();
+    }
+
+    public virtual async Task<IList<TEntity>> GetAll(int pageIndex, int pageSize)
+    {
+        return await _session.Query<TEntity>()
+                    .Skip((pageIndex - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
     }
 
     public async Task<TEntity?> GetByIdAsync(
@@ -39,4 +60,6 @@ public class GenericRepository<TEntity>
         await _session
             .DeleteAsync(entity, cancellationToken);
     }
+
+
 }

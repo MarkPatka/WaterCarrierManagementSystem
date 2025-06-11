@@ -1,10 +1,9 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using Microsoft.Extensions.Configuration;
+using FluentNHibernate.Conventions.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NHibernate;
-using System.Configuration.Internal;
 using System.Reflection;
 using WaterCarrierManagementSystem.Application.Common.Persistence;
 using WaterCarrierManagementSystem.Application.Common.Persistence.Repositories;
@@ -37,7 +36,12 @@ public static class DependencyInjection
                     .ConnectionString(dbSettings.ConnectionString)
                     .AdoNetBatchSize(20)
                 )
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .Mappings(m => 
+                {
+                    m.FluentMappings
+                        .AddFromAssembly(Assembly.GetExecutingAssembly())
+                        .Conventions.Add(DefaultCascade.All());
+                })
                 .ExposeConfiguration(cfg =>
                 {
                     cfg.SetProperty(NHibernate.Cfg.Environment.GenerateStatistics, "false");

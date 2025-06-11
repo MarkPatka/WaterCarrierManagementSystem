@@ -14,6 +14,10 @@ public class ContractorIdType : IUserType
     public Type ReturnedType => typeof(ContractorId);
     public bool IsMutable => false;
 
+    public ContractorIdType()
+    {
+        
+    }
 
     public object NullSafeGet(
         DbDataReader rs, 

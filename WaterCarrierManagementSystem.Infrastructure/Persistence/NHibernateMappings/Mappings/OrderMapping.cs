@@ -1,6 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using WaterCarrierManagementSystem.Domain.OrderAggregate;
 using WaterCarrierManagementSystem.Domain.OrderAggregate.ValueObjects;
+using WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings;
 
 namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings;
 
@@ -13,7 +14,7 @@ public class OrderMapping
 
         Id(x => x.Id)
             .Column("Id")
-            .CustomType<OrderId>()
+            .CustomType<OrderIdType>()
             .GeneratedBy.GuidComb();
 
         Map(x => x.OrderDateTime)
@@ -28,7 +29,7 @@ public class OrderMapping
             .Not.Nullable()
             .Cascade.SaveUpdate();
 
-        References(x => x.Counterparty)
+        References(x => x.Contractor)
             .Column("ContractorId")
             .Not.Nullable()
             .Cascade.SaveUpdate();

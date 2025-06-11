@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using WaterCarrierManagementSystem.Domain.ContractorAggregate;
-using WaterCarrierManagementSystem.Domain.ContractorAggregate.Entities;
 using WaterCarrierManagementSystem.Domain.ContractorAggregate.ValueObjects;
+using WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings;
 
 namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings;
 
@@ -14,7 +14,7 @@ public class ContractorMapping
 
         Id(x => x.Id)
             .Column("id")
-            .CustomType<ContractorId>()
+            .CustomType<ContractorIdType>()
             .GeneratedBy.Identity();
 
         Map(x => x.Name)
@@ -23,7 +23,7 @@ public class ContractorMapping
 
         Map(x => x.Inn)
             .Column("inn")
-            .CustomType<INN>()
+            .CustomType<INNType>()
             .Not.Nullable();
 
         References(x => x.Curator)

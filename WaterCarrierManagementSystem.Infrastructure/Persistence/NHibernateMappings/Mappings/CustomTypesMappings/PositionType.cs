@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WaterCarrierManagementSystem.Domain.EmplyeeAggregate.Enumerations;
 
-namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings
+namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings;
+
+public class PositionType : EnumStringType<Position>
 {
-    class PositionType
-    {
-    }
+    public PositionType() : base(typeof(Position)) { }
 }

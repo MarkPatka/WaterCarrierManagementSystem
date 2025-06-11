@@ -15,7 +15,7 @@ public class EmployeeMapping
 
         Id(x => x.Id)
             .Column("Id")
-            .CustomType<EmployeeId>()
+            .CustomType<EmployeeIdType>()
             .GeneratedBy.Assigned();
 
         Component(x => x.Name, m =>

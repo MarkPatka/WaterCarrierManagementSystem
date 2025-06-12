@@ -1,8 +1,10 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using MySqlConnector;
 using NHibernate;
 using NHibernate.Dialect;
 using NHibernate.Driver.MySqlConnector;
@@ -35,13 +37,14 @@ public static class DependencyInjection
         {
             var dbSettings = provider
                 .GetRequiredService<IOptions<DatabaseSettings>>().Value;
-;
+
             return Fluently.Configure()
                 .Database(MySQLConfiguration.Standard
                     .ConnectionString(dbSettings.ConnectionString)
                     .AdoNetBatchSize(20)
                     .Driver<MySqlConnectorDriver>()
                     .Dialect<MySQL55Dialect>()
+
                 )
                 .Mappings(m => 
                 {
@@ -53,6 +56,7 @@ public static class DependencyInjection
                 {
                     cfg.SetProperty(NHibernate.Cfg.Environment.GenerateStatistics, "false");
                     cfg.SetProperty(NHibernate.Cfg.Environment.PrepareSql, "true");
+
                 })
                 .BuildSessionFactory();
         });
@@ -63,7 +67,6 @@ public static class DependencyInjection
                 .GetRequiredService<ISessionFactory>();
 
             var session = sessionFactory.OpenSession();
-
             session.FlushMode = FlushMode.Commit;
 
             return session;
@@ -74,7 +77,6 @@ public static class DependencyInjection
 
     private static IServiceCollection RegisterRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IRepositoryFactory, RepositoryFactory>();
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();

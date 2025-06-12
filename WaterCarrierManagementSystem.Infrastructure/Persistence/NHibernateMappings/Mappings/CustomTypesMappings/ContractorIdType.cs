@@ -41,7 +41,7 @@ public class ContractorIdType : IUserType
         }
         else
         {
-            var id = ContractorId.Create((int)value);
+            var id = ContractorId.Create(((ContractorId)value).Value);
             NHibernateUtil.Int32.NullSafeSet(cmd, id.Value, index, session);
         }
     }

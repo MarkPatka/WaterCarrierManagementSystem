@@ -42,7 +42,7 @@ public class EmployeeIdType : IUserType
         }
         else
         {
-            var id = EmployeeId.Create((int)value);
+            var id = EmployeeId.Create(((EmployeeId)value).Value);
             NHibernateUtil.Int32.NullSafeSet(cmd, id.Value, index, session);
         }
     }

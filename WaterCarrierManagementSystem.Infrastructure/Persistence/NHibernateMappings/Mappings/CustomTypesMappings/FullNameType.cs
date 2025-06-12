@@ -6,6 +6,8 @@ using System.Data.Common;
 using System.Data;
 using WaterCarrierManagementSystem.Domain.ContractorAggregate.ValueObjects;
 using WaterCarrierManagementSystem.Domain.EmplyeeAggregate.ValueObjects;
+using System.Text;
+using FluentNHibernate.Conventions.AcceptanceCriteria;
 
 namespace WaterCarrierManagementSystem.Infrastructure.Persistence.NHibernateMappings.Mappings.CustomTypesMappings;
 public class FullNameType : IUserType
@@ -25,7 +27,7 @@ public class FullNameType : IUserType
         var firstName = (string)NHibernateUtil.String.NullSafeGet(rs, names[0], session);
         var lastName = (string)NHibernateUtil.String.NullSafeGet(rs, names[1], session);
         var middleName = (string)NHibernateUtil.String.NullSafeGet(rs, names[2], session);
-        
+
         return FullName.Create(firstName, lastName, middleName);
     }
 

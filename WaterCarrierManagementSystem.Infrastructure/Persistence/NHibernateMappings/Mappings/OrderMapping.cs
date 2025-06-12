@@ -17,6 +17,7 @@ public class OrderMapping
             .CustomType<OrderIdType>();
 
         Map(x => x.OrderDateTime)
+            .Column("order_date")
             .Not.Nullable();
 
         Map(x => x.Amount)
@@ -24,12 +25,12 @@ public class OrderMapping
             .Not.Nullable();
 
         References(x => x.Employee)
-            .Column("EmployeeId")
+            .Column("employee_id")
             .Not.Nullable()
             .Cascade.SaveUpdate();
 
         References(x => x.Contractor)
-            .Column("ContractorId")
+            .Column("contractor_id")
             .Not.Nullable()
             .Cascade.SaveUpdate();
     }

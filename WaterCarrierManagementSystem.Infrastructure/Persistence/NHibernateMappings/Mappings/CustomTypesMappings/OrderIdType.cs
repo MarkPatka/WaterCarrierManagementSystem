@@ -50,11 +50,11 @@ public class OrderIdType : IUserType
         else
         {
 
-            string? guidString = value.ToString();
+            string? guidString = ((OrderId)value).Value.ToString();
             ArgumentNullException.ThrowIfNull(guidString);
 
             var id = OrderId.Create(Guid.Parse(guidString));
-            NHibernateUtil.Int32.NullSafeSet(cmd, id.Value, index, session);
+            NHibernateUtil.Guid.NullSafeSet(cmd, id.Value, index, session);
         }
     }
 

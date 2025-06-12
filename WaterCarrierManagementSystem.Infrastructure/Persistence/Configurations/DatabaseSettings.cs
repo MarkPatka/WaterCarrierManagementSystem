@@ -15,7 +15,8 @@ public record DatabaseSettings
         $"Port={DB_PORT};" +
         $"Database={DB_NAME};" +
         $"Uid={DB_USER};" +
-        $"Pwd={DB_PASSWORD}";
+        $"Pwd={DB_PASSWORD};" +
+        $"CharSet=utf8;TreatTinyAsBoolean=false";
 
     private DatabaseSettings(
         string host,

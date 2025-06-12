@@ -7,10 +7,10 @@ using WaterCarrierManagementSystem.Infrastructure.Persistence;
 
 namespace WaterCarrierManagementSystem.Desktop.Commands;
 
-public class LoadEmployeesCommand(IUnitOfWork unitOfWork)
+public class LoadEmployeesCommand(IEmployeeRepository employeeRepository)
     : AsyncRelayCommand<LoadEmployeesResult>
 {
-    private readonly IUnitOfWork _contractorsRepositoryUnit = unitOfWork;
+    private readonly IEmployeeRepository _employeeRepository = employeeRepository;
 
     public override Func<object?, Task<CommandResult<LoadEmployeesResult>>> ExecuteCommand => LoadAllEmployees;
 
@@ -22,10 +22,8 @@ public class LoadEmployeesCommand(IUnitOfWork unitOfWork)
     {
         try
         {
-            var repository = _contractorsRepositoryUnit
-                .GetRepository<IEmployeeRepository>();
 
-            var data = await repository.GetAll();
+            var data = _employeeRepository.GetAll();
             LoadEmployeesResult result = new(data);
 
             return new CommandResult<LoadEmployeesResult>(result);

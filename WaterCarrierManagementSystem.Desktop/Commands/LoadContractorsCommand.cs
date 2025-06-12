@@ -5,10 +5,10 @@ using WaterCarrierManagementSystem.Domain.ContractorAggregate;
 
 namespace WaterCarrierManagementSystem.Desktop.Commands;
 
-public class LoadContractorsCommand(IUnitOfWork unitOfWork)
+public class LoadContractorsCommand(IContractorRepository contractorRepository)
     : AsyncRelayCommand<LoadContractorsResult>
 {
-    private readonly IUnitOfWork _contractorsRepositoryUnit = unitOfWork;
+    private readonly IContractorRepository _contractorsRepositoryUnit = contractorRepository;
 
     public override Func<object?, Task<CommandResult<LoadContractorsResult>>> ExecuteCommand => LoadAllContractors;
 
@@ -20,10 +20,7 @@ public class LoadContractorsCommand(IUnitOfWork unitOfWork)
     {
         try
         {
-            var repository = _contractorsRepositoryUnit
-                .GetRepository<IContractorRepository>();
-
-            var data = await repository.GetAll();
+            var data = _contractorsRepositoryUnit.GetAll();
             LoadContractorsResult result = new(data);
 
             return new CommandResult<LoadContractorsResult>(result);

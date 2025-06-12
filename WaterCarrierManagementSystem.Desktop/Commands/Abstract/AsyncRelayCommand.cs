@@ -34,7 +34,10 @@ public abstract class AsyncRelayCommand<TResult> : ICommand
 
     public async void Execute(object? parameter = null)
     {
-        await ExecuteAsync(parameter);
+        var task = ExecuteAsync(parameter)
+            .ConfigureAwait(true);
+
+        await task;
     }
 
     private async Task ExecuteAsync(object? parameter = null)

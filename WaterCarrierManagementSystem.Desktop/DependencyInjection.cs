@@ -57,6 +57,7 @@ public static class DependencyInjection
 
 
         services
+            .AddTransient<CreateOrderCommand>()
             .AddTransient<LoadContractorsCommand>()
             .AddTransient<LoadEmployeesCommand>()
             .AddTransient<LoadOrdersCommand>()

@@ -37,7 +37,7 @@
                 <DataGridTextColumn IsReadOnly="True" 
                             Width="*" 
                             Header="Birthdate" 
-                            Binding="{Binding Expires, StringFormat='dd.MM.yyyy'}"/>
+                            Binding="{Binding BirthDate, StringFormat='dd.MM.yyyy'}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

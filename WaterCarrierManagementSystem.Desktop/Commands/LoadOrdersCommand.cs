@@ -6,10 +6,10 @@ using WaterCarrierManagementSystem.Domain.OrderAggregate;
 
 namespace WaterCarrierManagementSystem.Desktop.Commands;
 
-public class LoadOrdersCommand(IUnitOfWork unitOfWork)
+public class LoadOrdersCommand(IOrderRepository orderRepository)
     : AsyncRelayCommand<LoadOrdersResult>
 {
-    private readonly IUnitOfWork _contractorsRepositoryUnit = unitOfWork;
+    private readonly IOrderRepository _orderRepository = orderRepository;
 
     public override Func<object?, Task<CommandResult<LoadOrdersResult>>> ExecuteCommand => LoadAllOrders;
 
@@ -21,10 +21,7 @@ public class LoadOrdersCommand(IUnitOfWork unitOfWork)
     {
         try
         {
-            var repository = (GenericRepository<Order>)_contractorsRepositoryUnit
-                .GetGenericRepository<IOrderRepository>();
-
-            var data = await repository.GetAll();
+            var data = _orderRepository.GetAll();
             LoadOrdersResult result = new(data);
 
             return new CommandResult<LoadOrdersResult>(result);
@@ -42,4 +39,4 @@ public class LoadOrdersCommand(IUnitOfWork unitOfWork)
     }
 
 }
-public record LoadOrdersResult(IEnumerable<Order> Employees);
+public record LoadOrdersResult(IEnumerable<Order> Orders);

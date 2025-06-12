@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WaterCarrierManagementSystem.Desktop.Views"
         mc:Ignorable="d"
@@ -19,24 +20,99 @@
         BorderBrush="LightBlue"
         CornerRadius="30"
         MouseDown="Border_MouseDown">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            
+        <DockPanel>
             <TextBlock
                 Text="ADD NEW EMPLOYEE"
+                DockPanel.Dock="Top"
                 Foreground="White" 
                 FontSize="22"
                 FontWeight="SemiBold"
-                DockPanel.Dock="Top"
                 TextAlignment="Center"
                 Margin="5 25 0 10">
             </TextBlock>
+            <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#FF6AAFFF"/>
+
+            <StackPanel DockPanel.Dock="Top">
+                <TextBox
+                    Style="{StaticResource MaterialDesignTextBox}"
+                    md:HintAssist.Hint="  FIRST NAME"
+                    Background="#FFFFFF"
+                    Foreground="DimGray"
+                    BorderThickness="1"
+                    Height="35"
+                    FontSize="16"
+                    VerticalAlignment="Center"
+                    Margin="10">
+                </TextBox>
+                
+                <TextBox
+                    Style="{StaticResource MaterialDesignTextBox}"
+                    md:HintAssist.Hint="  LAST NAME"
+                    Background="#FFFFFF"
+                    Foreground="DimGray"
+                    BorderThickness="1"
+                    Height="35"
+                    FontSize="16"
+                    VerticalAlignment="Center"
+                    Margin="10">
+                </TextBox>
+                
+                <TextBox
+                    Style="{StaticResource MaterialDesignTextBox}"
+                    md:HintAssist.Hint="  MIDDLE NAME"
+                    Background="#FFFFFF"
+                    Foreground="DimGray"
+                    BorderThickness="1"
+                    Height="35"
+                    FontSize="16"
+                    VerticalAlignment="Center"
+                    Margin="10">
+                </TextBox>
+                <!--DATE-->
+                <DatePicker 
+                    Style="{StaticResource MaterialDesignFilledDatePicker}"
+                    md:HintAssist.Hint="  Birth Day"
+                    Background="Black"
+                    Foreground="DimGray"
+                    BorderThickness="1"
+                    Height="45"
+                    FontSize="16"
+                    VerticalAlignment="Center"
+                    Margin="10">
+                </DatePicker>
+
+                
+            </StackPanel>
 
 
 
-        </Grid>
+            <Button 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                Background="LightPink"
+                VerticalAlignment="Bottom"
+                DockPanel.Dock="Bottom"
+                Margin="15 0"
+                md:ButtonAssist.CornerRadius="15">
+                <TextBlock
+                    Text="CLOSE"
+                    FontSize="18"
+                    FontWeight="SemiBold">
+                </TextBlock>
+            </Button>
+            
+            <Button 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                Background="LightBlue"
+                VerticalAlignment="Bottom"
+                DockPanel.Dock="Bottom"
+                Margin="15"
+                md:ButtonAssist.CornerRadius="15">
+                <TextBlock
+                    Text="SAVE"
+                    FontSize="18"
+                    FontWeight="SemiBold">
+                </TextBlock>
+            </Button>
+        </DockPanel>
     </Border>
 </Window>

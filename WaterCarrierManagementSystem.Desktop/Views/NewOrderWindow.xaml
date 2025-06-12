@@ -34,21 +34,24 @@
 
             <StackPanel DockPanel.Dock="Top">
                 <!--DATE-->
-                <TextBox 
-                    Style="{StaticResource MaterialDesignTextBox}"
+                <DatePicker 
+                    Style="{StaticResource MaterialDesignFilledDatePicker}"
+                    SelectedDate="{Binding CreationDate,  Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"
                     md:HintAssist.Hint="  Creation Date"
-                    Background="#FFFFFF"
+                    Background="Black"
                     Foreground="DimGray"
                     BorderThickness="1"
-                    Height="35"
+                    Height="45"
                     FontSize="16"
                     VerticalAlignment="Center"
                     Margin="10">
-                </TextBox>
+                </DatePicker>
                 
                 <!--AMOUNT-->
+
                 <TextBox
                     Style="{StaticResource MaterialDesignTextBox}"
+                    Text="{Binding Amount, StringFormat=n2}"
                     md:HintAssist.Hint="  Order Amount"
                     Background="#FFFFFF"
                     Foreground="DimGray"
@@ -63,7 +66,7 @@
                 <ComboBox 
                     Style="{StaticResource MaterialDesignComboBox}"
                     ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}"
-                    SelectedItem="{Binding SelectedEmployee, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedEmployeeName, UpdateSourceTrigger=PropertyChanged}"
                     md:HintAssist.Hint="  Employee"
                     Background="#FFFFFF"
                     Foreground="DimGray"
@@ -71,15 +74,15 @@
                     Height="35"
                     FontSize="16"
                     VerticalAlignment="Center"
-                    Margin="10">
-
+                    Margin="10"
+                    Padding="5">
                 </ComboBox>
             
                 <!--CONTRACTOR-->
                 <ComboBox 
                     Style="{StaticResource MaterialDesignComboBox}"
                     ItemsSource="{Binding Contractors, UpdateSourceTrigger=PropertyChanged}"
-                    SelectedItem="{Binding SelectedContractor, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedContractorName, UpdateSourceTrigger=PropertyChanged}"
                     md:HintAssist.Hint="  Contaractor"
                     md:HintAssist.IsFloating="True"
                     Background="#FFFFFF"
@@ -88,18 +91,33 @@
                     Height="35"
                     FontSize="16"
                     VerticalAlignment="Center"
-                    Margin="10">
+                    Margin="10"
+                    Padding="5">
                 </ComboBox>
             </StackPanel>
 
-
+            <Button 
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                Background="LightPink"
+                VerticalAlignment="Bottom"
+                DockPanel.Dock="Bottom"
+                Margin="15 0"
+                md:ButtonAssist.CornerRadius="15">
+                <TextBlock
+                    Text="CLOSE"
+                    FontSize="18"
+                    FontWeight="SemiBold">
+                </TextBlock>
+            </Button>
             <Button 
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Background="LightBlue"
                 VerticalAlignment="Bottom"
                 DockPanel.Dock="Bottom"
                 Margin="15"
-                md:ButtonAssist.CornerRadius="15">
+                md:ButtonAssist.CornerRadius="15"
+                Command="{Binding CreateNewOrderCommand}"
+                CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
                 <TextBlock
                     Text="SAVE"
                     FontSize="18"

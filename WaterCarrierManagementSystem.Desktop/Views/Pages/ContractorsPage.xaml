@@ -37,7 +37,7 @@
                 <DataGridTextColumn IsReadOnly="True" 
                             Width="*" 
                             Header="Birthdate" 
-                            Binding="{Binding Curator}"/>
+                            Binding="{Binding CuratorName}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

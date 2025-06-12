@@ -13,12 +13,15 @@
                         <ResourceDictionary Source="/Views/Assets/Styles.xaml"/>
                     </ResourceDictionary.MergedDictionaries>
 
-                    <!--<SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light" Color="#426DB1"/>
+
+
+                    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="Black"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light" Color="#426DB1"/>
                     <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Light.Foreground" Color="#9ECCFF"/>
-                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="{StaticResource Primary500}"/>
-                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Foreground" Color="{StaticResource Primary500Foreground}"/>
-                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark" Color="{StaticResource Primary700}"/>
-                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="{StaticResource Primary700Foreground}"/>-->
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary" Color="Black"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Foreground" Color="Black"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark" Color="#426DB1"/>
+                    <SolidColorBrush x:Key="MaterialDesign.Brush.Primary.Dark.Foreground" Color="Black"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary>

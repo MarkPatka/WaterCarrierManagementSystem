@@ -18,7 +18,7 @@ public class Order : AggregateRoot<OrderId>
         DateTime orderDate, decimal amount, Employee employee, Contractor contractor) 
         : base(id)
     {
-        if (amount <= 0)
+        if (amount < 0)
             throw new ArgumentException("Amount must be positive", nameof(amount));
 
         OrderDateTime = orderDate;

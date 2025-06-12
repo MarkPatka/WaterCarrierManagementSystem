@@ -28,4 +28,5 @@ public class Employee : AggregateRoot<EmployeeId>
 
     public override bool Equals(object obj) => base.Equals(obj);
     public override int GetHashCode() => base.GetHashCode();
+    public override string ToString() => $"{Name.LastName} {Name.FirstName} {Name.MiddleName}";
 }

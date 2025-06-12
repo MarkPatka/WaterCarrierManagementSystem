@@ -1,0 +1,5 @@
+ALTER DATABASE WaterCarrierDb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+ALTER TABLE Employees CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Contractors CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE Orders CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

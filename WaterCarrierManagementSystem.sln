@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		mysql-init\01-schema.sql = mysql-init\01-schema.sql
 		mysql-init\02-data.sql = mysql-init\02-data.sql
+		mysql-init\03-charset.sql = mysql-init\03-charset.sql
+		custom.cnf = custom.cnf
 		docker-compose.yaml = docker-compose.yaml
 		WaterCarrierManagementSystem.Desktop\logo.ico = WaterCarrierManagementSystem.Desktop\logo.ico
 	EndProjectSection

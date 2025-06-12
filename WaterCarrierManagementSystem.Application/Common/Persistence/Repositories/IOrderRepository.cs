@@ -1,7 +1,6 @@
 ﻿
 namespace WaterCarrierManagementSystem.Application.Common.Persistence.Repositories;
 
-public interface IOrderRepository 
-    : IRepository<Domain.OrderAggregate.Order>
+public interface IOrderRepository : IRepository<Domain.OrderAggregate.Order>
 {
 }

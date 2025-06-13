@@ -6,7 +6,7 @@ Follow these steps to set up the Water Carrier Management System on your local m
 
 ### 1. Download the Project
 
-- Download the project as a `.zip` file.
+- Download the project from the release page.
 
 ### 2. Unpack the Project
 

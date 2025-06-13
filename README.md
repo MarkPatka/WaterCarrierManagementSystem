@@ -16,7 +16,7 @@ Follow these steps to set up the Water Carrier Management System on your local m
 ### 3. Create the Environment File
 
 - Navigate to the root directory of the project.
-- Create a file named `.env` if it does not already exist.
+- Create a file named `.env` if it does not already exist (either pass the stage 4).
 
 ### 4. Configure the Environment File
 
